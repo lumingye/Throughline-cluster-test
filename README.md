@@ -48,3 +48,20 @@
 保留：第三方论文名、公开系统名、模型与厂商名——**因为复核和引用需要它们**。
 
 这里只放实验记录本身；尚未执行的计划、以及仍在推进中的方向，都不在本仓库范围内。
+
+---
+
+## 许可
+
+**文档**（`README.md` / `EXPERIMENT_REPORT.md` / `REFERENCES.md` / `reference-code/README.md`）——
+[CC BY 4.0](./LICENSE)：随便用，包括商用，改编也行，**唯一义务是署名**（标出作者、附许可证链接、说明是否改动过）。
+
+**代码**（`reference-code/` 下的 `.py`）——
+[MIT](./reference-code/LICENSE)。CC 系列许可证官方并不建议用于软件，所以代码单独走 MIT。
+
+引用时可以写：
+
+```
+"个人记忆聚合：实验记录" by lumingye, licensed under CC BY 4.0.
+https://github.com/lumingye/Throughline-cluster-test
+```
