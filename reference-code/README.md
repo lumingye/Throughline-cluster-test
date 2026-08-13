@@ -20,6 +20,7 @@
 | `schema.py` | E10 / E11 / E12 的枚举合同 | ✅ |
 | `b_judge.py` | E11 / E12 二维 typed 判断 + 来源回指校验 | ✅ 两轮真实样本 |
 | `blocking.py` | 多路候选并集 + 增量 BM25 | ⚠️ 已实现，**未在真实语料上评测** |
+| `audit_verify.py` | 补遗 S5 离线审计报告的自校验 | ✅ 真实审计报告上跑过 |
 
 **没有包含**：会读写真实记忆的运行器、导出/导入脚手架、任何提示响应缓存、
 以及早期硬判断实验（E2 / E3）的私有材料与卡片夹具。
@@ -31,10 +32,11 @@
 这些是**扁平模块**，不是安装包。在本目录下直接运行：
 
 ```bash
-# 零成本、不联网、不调模型的三件
+# 零成本、不联网、不调模型的四件
 python length_census.py 快照.jsonl
 python scan_explicit_refs.py 快照.jsonl --dump refs.tsv
 python nesting_check.py
+python audit_verify.py 审计报告.json 审计正文.md
 
 # 会真的把原文发往你配置的对话服务
 export MEMAGG_CHAT_API_BASE=...
@@ -120,5 +122,7 @@ strip 后的算，于是**缓存永不命中**，静默全量重跑，只表现�
 - `min_run.py` **会把选中记录的原文发往你配置的对话服务**，也会在终端打印原文片段。
   只在本地看，不要把输出贴到公开的地方。
 - API key 只从环境变量读，不落盘、不打印、不进缓存。
-- `length_census.py` / `scan_explicit_refs.py` / `nesting_check.py`
+- `length_census.py` / `scan_explicit_refs.py` / `nesting_check.py` / `audit_verify.py`
   **不联网、不调模型、不写任何东西**；`--dump` 导出的也只有标识对，无正文。
+- `audit_verify.py` 只读一份已经脱敏的审计报告，**它自己不接触任何私有产物**；
+  它做的是相反的事——检查那份报告有没有把不该出现的东西带出来。
